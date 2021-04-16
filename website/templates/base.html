@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="enS">
+    <head>
+        <meta charset ='utf-8'/>
+        <meta name = 'viewpoint' content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href ="{{ url_for('static', filename= 'main.css')}}">
+        <title>
+            {% block title %}Stock View{% endblock %}
+        </title>
+        <body>
+            {% block body %}
+            <div class = "stock_container">
+                <div class = "stock_container_title">
+                    <h2>Stock View</h2>
+                </div>
+                <div class = "stock_form">
+                    <form method= "POST">
+                        <label class="stock_ticker" for = "stock_ticker_label">Enter Stock Ticker:</label>
+                        <br>
+                        <input class ="stock_ticker" type = "text" name = "stock_ticker"/>
+                        <br>
+                        <br>
+                        <label class = "stock_name" for="stock_name">Enter Stock Name:</label>
+                        <br>
+                        <input class = "stock_name" type="text", name="stock_name"/>
+                        <button class = "search_stock" type = "submit">Search </button>
+                    </form>
+                </div>
+            </div>
+            {% endblock %}
+        </body>
+    </head>
+</html>

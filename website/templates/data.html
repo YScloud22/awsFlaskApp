@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+<div class = "ugly_container"><html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<link rel="stylesheet" href ="{{ url_for('static', filename= 'main.css')}}">
+{% block title %}{{company.capitalize()}}{% endblock %}
+{% block body %}
+<div class = "bigboy_con">
+<div class = "data_page_top">
+    <br>
+    <h1>{{stock_ticker.upper()}}: {{company.capitalize()}}</h2>
+</div>  
+
+<div class = "data_list_mentions">
+    <dl>
+        <dt>Today Mentions: {{day}}</dt>
+        <br>
+        <dt>Weekly Mentions: {{week}} </dt>
+        <br>
+        <dt>Monthly Mentions: {{month}}</dt>
+    </dl>
+</div>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+<body>
+    <canvas class = "data_graph" id="lineChart" width="350" height="350"></canvas>
+    <script>
+        var ctx = document.getElementById("lineChart").getContext("2d");
+        var lineChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: {{labels | safe}},
+                datasets: [
+                    {
+                        label: "Data Visualization",
+                        data: {{ values | safe}},
+                        fill: false,
+                        borderColor: "rgb(75, 192, 192)",
+                        lineTension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: false
+            }
+        })
+    </script>
+</body>
+</div>
+</html>
+</html>
+</div>
+{% endblock %}
